@@ -1,6 +1,6 @@
 [local]
 target0 ansible_host=localhost ansible_connection=local
 [google]
-target1 ansible_host=10.128.0.3 ansible_connection=ssh ansible_port=22 ansible_user=rudraprasadpradhan4 ansible_ssh_pass=Radiant@007
+target1 ansible_host=XX.XX.XX.XX ansible_connection=ssh ansible_port=22 ansible_user=rudraprasadpradhan4 ansible_ssh_pass=*******
 [azure]
-target2 ansible_host=13.90.206.237  ansible_connection=ssh ansible_port=22  ansible_user=AnsibleControl ansible_ssh_pass=RadiantAzure@007
+target2 ansible_host=XX>XX.XX.XX ansible_connection=ssh ansible_port=22  ansible_user=AnsibleControl ansible_ssh_pass=*********
