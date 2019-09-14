@@ -1,0 +1,15 @@
+#Simple Ansible Playbook
+-
+  name: plays
+  hosts: all
+  tasks: 
+    - name: Fetch host details
+      command: hostnamectl
+      register: output
+    - name: script execution
+      script: test_script.sh
+      register: script_output
+
+ 
+    - debug:
+        msg: details:- {{ output ['stdout_lines'] }}  | script output:- {{ script_output ['stdout_lines'] }} 

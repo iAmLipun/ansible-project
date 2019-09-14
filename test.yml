@@ -1,0 +1,14 @@
+#Simple Ansible Playbook
+-
+  name: play1
+  hosts: localhost
+  tasks: 
+    - name: Fetch the current date
+      command: date
+      register: output
+    
+    - name: Fetch Ip address
+      command: ifconfig
+      register: ip_adr
+    - debug: 
+         msg: current date:- {{ output }}  & Ip Address :- {{ ip_adr }}

@@ -1,0 +1,21 @@
+#Simple Ansible Playbook
+-
+  name: plays
+  hosts: localhost
+  tasks: 
+    - name: Fetch the current date
+      command: date
+      register: output
+    - name: script execution
+      script: test_script.sh
+      register: script_output
+   # - name: install httpd package
+    #  yum:
+     #   name: httpd
+      #  state: present
+   # - name: start web server
+    #  service: 
+     #   name: httpd
+      #  state: started
+    - debug:
+        msg: date:- {{ output }}  | script output:- {{ script_output }}

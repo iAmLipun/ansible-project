@@ -1,0 +1,11 @@
+#Connection Check Ansible Playbook
+#Ping Check
+-
+  name: Connection Check
+  hosts: localhost
+  tasks: 
+    - name: ping check
+      ping: 
+      register: ping_output
+    - debug:
+        msg: ping status = {{ ping_output }}

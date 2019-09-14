@@ -1,0 +1,21 @@
+#Simple Ansible Playbook
+-
+  name: plays
+  hosts: localhost
+  tasks: 
+    - name: Fetch the current date
+      command: date
+      register: output
+    - name: script execution
+      script: test_script.sh
+      register: script_output
+    - name: printing test_script
+      shell: echo "only on Red Hat 6, derivatives, and later"
+      when: ansible_facts['os_family'] == "RedHat"
+      register: text
+      var:
+        flag: 0
+
+ 
+    - debug:
+        msg: date:- {{ output ['stdout_lines'] }}  | script output:- {{ script_output ['stdout_lines'] }} | {{ansible_facts['os_family']}} | {{text['stdout_lines']}} | {{flag}}

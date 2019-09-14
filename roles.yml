@@ -1,0 +1,7 @@
+#Simple Ansible Playbook
+-
+  name: plays
+  hosts: all
+  roles: 
+     - host_details
+     - script_execution

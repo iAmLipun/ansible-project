@@ -1,0 +1,47 @@
+---
+  - name: Deploying Web Application
+    hosts: localhost
+    var:
+      db_name: employee_db
+      db_user: root
+      db_pass:
+    task:
+     - name: install all required dependancy
+       yum: name={{ item }} state=installed
+       with_items:
+         -python
+         -python-dev
+         -python-setuptools
+         -python-pip
+         -build-essential
+     - name: install MySQL database
+       yum: name={{ item }} state=installed
+       with_items:
+         -mysql-server
+         -mysql-clients
+     - name: Start MySQL service
+       service:
+         name: mysql
+         state: started
+         enabled: yes
+     - name: create database Application
+       mysql_db: name={{ db_name }} state=present
+
+     - name: Create database user
+       mysql_user:
+         name: "{{ db_user}}"
+         password: "{{ db_pass }}"
+         priv: '*.:ALL*'
+         state: present
+         host: '%'
+
+     - name: install python flask packages
+       pip: name={{ item }} state=present
+       with_items:
+         - flask
+         - flask-mysql
+
+     - name: copy source code
+       copy: src=app.py dest=/opt/app.py
+     - name: starting web server
+       shell: FLASK_app=app.py nohup flask run --host=0.0.0.0 &

@@ -1,0 +1,22 @@
+#Ansible Playbook for database 
+  - 
+    name: Deploying database Application
+    hosts: localhost
+    #remote_user: root
+    tasks: 
+      #- name: creating database
+        #mysql_db: name=rudra_db state=present
+        
+      - name: creating table in database
+        command: >
+             mysql --user=root --password= rudra_db
+             --host=localhost --batch --skip-column-names
+             --execute="CREATE TABLE student_list (name VARCHAR(20), owner VARCHAR(20),
+             species VARCHAR(20), sex CHAR(1), birth DATE, death DATE)"
+        register: db_results
+        check_mode: no
+        changed_when: False
+        
+      - name: Printing Results
+        debug: "{{ item }}"
+        with_items: db_result

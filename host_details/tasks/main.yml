@@ -1,0 +1,9 @@
+---
+# tasks file for host_details
+    - name: Fetch host details
+      command: hostnamectl
+      register: output
+      
+    - debug: 
+         msg: details:- {{ output ['stdout_lines'] }}
+

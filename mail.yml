@@ -1,0 +1,8 @@
+- name: Sending an e-mail using StartTLS to the remote machine
+  mail:
+    host: localhost
+    port: 25
+    to: radiant rudra <radiant.rudra@outlook.com>
+    subject: Ansible-report
+    body: System {{ ansible_hostname }} has been successfully provisioned.
+    secure: starttls

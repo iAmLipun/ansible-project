@@ -1,0 +1,10 @@
+ -
+   name: start mysql service
+   hosts: localhost
+   tasks:
+      - name: restarting the mysql
+        command: sudo service mysql restart
+        register: output
+        
+      - debug: 
+           msg: output:-  {{output}}
